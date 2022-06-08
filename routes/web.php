@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
     Route::get('/',             ['as'=>'associado',         'uses'=>'\App\Http\Controllers\AssociadoController@index'  ]);
-    // Route::get('/create',       ['as'=>'atores.create',  'uses'=>'\App\Http\Controllers\AtoresController@create' ]);
-    // Route::post('/store',       ['as'=>'atores.store',   'uses'=>'\App\Http\Controllers\AtoresController@store'  ]);
-    // Route::get('/{id}/destroy', ['as'=>'atores.destroy', 'uses'=>'\App\Http\Controllers\AtoresController@destroy']);
-    // Route::get('/{id}/edit',    ['as'=>'atores.edit',    'uses'=>'\App\Http\Controllers\AtoresController@edit'   ]);
-    // Route::put('/{id}/update',  ['as'=>'atores.update',  'uses'=>'\App\Http\Controllers\AtoresController@update' ]);
+    Route::get('/create',       ['as'=>'associado.create',  'uses'=>'\App\Http\Controllers\AssociadoController@create' ]);
+    Route::post('/store',       ['as'=>'associado.store',   'uses'=>'\App\Http\Controllers\AssociadoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'associado.destroy', 'uses'=>'\App\Http\Controllers\AssociadoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'associado.edit',    'uses'=>'\App\Http\Controllers\AssociadoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'associado.update',  'uses'=>'\App\Http\Controllers\AssociadoController@update' ]);
 });
 
 //convidado
@@ -33,3 +33,6 @@ Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
 //patrocinador
 //endereco
 //acesso
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
