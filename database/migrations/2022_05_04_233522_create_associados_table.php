@@ -33,6 +33,14 @@ return new class extends Migration
             $table->string('nome',50);
             $table->string('telefone', 50);
         });
+        Schema::create('reuniao', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',50);
+            $table->string('assunto', 75);
+            $table->string('local', 50);
+            $table->date('dt_reuniao');
+        });
     }
 
     /**

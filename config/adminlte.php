@@ -237,6 +237,11 @@ return [
             'url' => 'convidado',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'Reunião',
+            'url' => 'reuniao',
+            'icon' => 'fas fa-fw fa-users',
+        ],
         // // Navbar items:
         // [
         //     'type'         => 'navbar-search',
