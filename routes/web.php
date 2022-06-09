@@ -26,13 +26,62 @@ Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
     Route::put('/{id}/update',  ['as'=>'associado.update',  'uses'=>'\App\Http\Controllers\AssociadoController@update' ]);
 });
 
-//convidado
-//reuniao
-//projeto
-//instituicao
-//patrocinador
-//endereco
-//acesso
+Route::group(['prefix'=>'convidado', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'convidado',         'uses'=>'\App\Http\Controllers\ConvidadoController@index'  ]);
+    Route::get('/create',       ['as'=>'convidado.create',  'uses'=>'\App\Http\Controllers\ConvidadoController@create' ]);
+    Route::post('/store',       ['as'=>'convidado.store',   'uses'=>'\App\Http\Controllers\ConvidadoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'convidado.destroy', 'uses'=>'\App\Http\Controllers\ConvidadoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'convidado.edit',    'uses'=>'\App\Http\Controllers\ConvidadoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'convidado.update',  'uses'=>'\App\Http\Controllers\ConvidadoController@update' ]);
+});
+Route::group(['prefix'=>'reuniao', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'reuniao',         'uses'=>'\App\Http\Controllers\ReuniaoController@index'  ]);
+    Route::get('/create',       ['as'=>'reuniao.create',  'uses'=>'\App\Http\Controllers\ReuniaoController@create' ]);
+    Route::post('/store',       ['as'=>'reuniao.store',   'uses'=>'\App\Http\Controllers\ReuniaoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'reuniao.destroy', 'uses'=>'\App\Http\Controllers\ReuniaoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'reuniao.edit',    'uses'=>'\App\Http\Controllers\ReuniaoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'reuniao.update',  'uses'=>'\App\Http\Controllers\ReuniaoController@update' ]);
+});
+Route::group(['prefix'=>'projeto', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'projeto',         'uses'=>'\App\Http\Controllers\ProjetoController@index'  ]);
+    Route::get('/create',       ['as'=>'projeto.create',  'uses'=>'\App\Http\Controllers\ProjetoController@create' ]);
+    Route::post('/store',       ['as'=>'projeto.store',   'uses'=>'\App\Http\Controllers\ProjetoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'projeto.destroy', 'uses'=>'\App\Http\Controllers\ProjetoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'projeto.edit',    'uses'=>'\App\Http\Controllers\ProjetoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'projeto.update',  'uses'=>'\App\Http\Controllers\ProjetoController@update' ]);
+});
+Route::group(['prefix'=>'instituicao', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'instituicao',         'uses'=>'\App\Http\Controllers\InstituicaoController@index'  ]);
+    Route::get('/create',       ['as'=>'instituicao.create',  'uses'=>'\App\Http\Controllers\InstituicaoController@create' ]);
+    Route::post('/store',       ['as'=>'instituicao.store',   'uses'=>'\App\Http\Controllers\InstituicaoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'instituicao.destroy', 'uses'=>'\App\Http\Controllers\InstituicaoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'instituicao.edit',    'uses'=>'\App\Http\Controllers\InstituicaoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'instituicao.update',  'uses'=>'\App\Http\Controllers\InstituicaoController@update' ]);
+});
+Route::group(['prefix'=>'patrocinador', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'patrocinador',         'uses'=>'\App\Http\Controllers\PatrocinadorController@index'  ]);
+    Route::get('/create',       ['as'=>'patrocinador.create',  'uses'=>'\App\Http\Controllers\PatrocinadorController@create' ]);
+    Route::post('/store',       ['as'=>'patrocinador.store',   'uses'=>'\App\Http\Controllers\PatrocinadorController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'patrocinador.destroy', 'uses'=>'\App\Http\Controllers\PatrocinadorController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'patrocinador.edit',    'uses'=>'\App\Http\Controllers\PatrocinadorController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'patrocinador.update',  'uses'=>'\App\Http\Controllers\PatrocinadorController@update' ]);
+});
+Route::group(['prefix'=>'endereco', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'endereco',         'uses'=>'\App\Http\Controllers\EnderecoController@index'  ]);
+    Route::get('/create',       ['as'=>'endereco.create',  'uses'=>'\App\Http\Controllers\EnderecoController@create' ]);
+    Route::post('/store',       ['as'=>'endereco.store',   'uses'=>'\App\Http\Controllers\EnderecoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'endereco.destroy', 'uses'=>'\App\Http\Controllers\EnderecoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'endereco.edit',    'uses'=>'\App\Http\Controllers\EnderecoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'endereco.update',  'uses'=>'\App\Http\Controllers\EnderecoController@update' ]);
+});
+Route::group(['prefix'=>'acesso', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'acesso',         'uses'=>'\App\Http\Controllers\AcessoController@index'  ]);
+    Route::get('/create',       ['as'=>'acesso.create',  'uses'=>'\App\Http\Controllers\AcessoController@create' ]);
+    Route::post('/store',       ['as'=>'acesso.store',   'uses'=>'\App\Http\Controllers\AcessoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'acesso.destroy', 'uses'=>'\App\Http\Controllers\AcessoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'acesso.edit',    'uses'=>'\App\Http\Controllers\AcessoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'acesso.update',  'uses'=>'\App\Http\Controllers\AcessoController@update' ]);
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -226,10 +226,15 @@ return [
 
     'menu' => [
 
-        ['header' => 'ASSOCIADOS'],
+        ['header' => '• MENU'],
         [
             'text' => 'Associado',
             'url' => 'associado',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Convidado',
+            'url' => 'convidado',
             'icon' => 'fas fa-fw fa-users',
         ],
         // // Navbar items:

@@ -26,6 +26,13 @@ return new class extends Migration
             $table->string('padrinho', 50);
             $table->string('cargo', 50);
         });
+
+        Schema::create('convidado', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',50);
+            $table->string('telefone', 50);
+        });
     }
 
     /**
@@ -35,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados');
+        Schema::dropIfExists('associados', 'convidado');
     }
 };
