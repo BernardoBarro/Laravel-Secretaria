@@ -41,6 +41,12 @@ return new class extends Migration
             $table->string('local', 50);
             $table->date('dt_reuniao');
         });
+        Schema::create('projeto', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',50); 
+            $table->string('descricao', 50);
+        });
     }
 
     /**
@@ -50,6 +56,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados', 'convidado');
+        Schema::dropIfExists('associados', 'convidado', 'projeto');
     }
 };

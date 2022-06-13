@@ -242,6 +242,11 @@ return [
             'url' => 'reuniao',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'Projeto',
+            'url' => 'projeto',
+            'icon' => 'fas fa-fw fa-users',
+        ],
         // // Navbar items:
         // [
         //     'type'         => 'navbar-search',
