@@ -226,10 +226,17 @@ return [
 
     'menu' => [
 
-        ['header' => '• MENU'],
+        [
+            'header' => '• MENU',
+        ],
         [
             'text' => 'Associado',
             'url' => 'associado',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Instituicao',
+            'url' => 'instituicao',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
@@ -238,13 +245,13 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Reunião',
-            'url' => 'reuniao',
+            'text' => 'Projeto',
+            'url' => 'projeto',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Projeto',
-            'url' => 'projeto',
+            'text' => 'Reunião',
+            'url' => 'reuniao',
             'icon' => 'fas fa-fw fa-users',
         ],
         // // Navbar items:

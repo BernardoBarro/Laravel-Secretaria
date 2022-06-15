@@ -47,6 +47,12 @@ return new class extends Migration
             $table->string('nome',50); 
             $table->string('descricao', 50);
         });
+        Schema::create('instituicao', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',50); 
+            $table->string('contato', 50);
+        });
     }
 
     /**
@@ -56,6 +62,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados', 'convidado', 'projeto');
+        Schema::dropIfExists('associados', 'convidado', 'projeto', 'instituicao');
     }
 };
