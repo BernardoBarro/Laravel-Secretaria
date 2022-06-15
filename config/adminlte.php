@@ -245,6 +245,11 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
+            'text' => 'Patrocinador',
+            'url' => 'patrocinador',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'Projeto',
             'url' => 'projeto',
             'icon' => 'fas fa-fw fa-users',

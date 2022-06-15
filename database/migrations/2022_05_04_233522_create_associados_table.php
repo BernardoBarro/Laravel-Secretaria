@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        //Tabela dos Associados
         Schema::create('associados', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -27,12 +28,15 @@ return new class extends Migration
             $table->string('cargo', 50);
         });
 
+        //Tabela dos Convidados
         Schema::create('convidado', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('nome',50);
             $table->string('telefone', 50);
         });
+        
+        //Tabela das Reuniões
         Schema::create('reuniao', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -41,17 +45,30 @@ return new class extends Migration
             $table->string('local', 50);
             $table->date('dt_reuniao');
         });
+
+        //Tabela dos Projetos
         Schema::create('projeto', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('nome',50); 
             $table->string('descricao', 50);
         });
+
+        //Tabela das Instituições
         Schema::create('instituicao', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('nome',50); 
             $table->string('contato', 50);
+        });
+
+        //Tabela dos Patrocinadores
+        Schema::create('patrocinador', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',50); 
+            $table->string('valor', 15);
+            $table->string('descricao', 50);
         });
     }
 
@@ -62,6 +79,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados', 'convidado', 'projeto', 'instituicao');
+        Schema::dropIfExists('associados', 'convidado', 'projeto', 'instituicao', 'patrocinador');
     }
 };
