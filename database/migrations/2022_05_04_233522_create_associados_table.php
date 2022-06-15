@@ -70,6 +70,17 @@ return new class extends Migration
             $table->string('valor', 15);
             $table->string('descricao', 50);
         });
+
+        //Tabela dos Endereços
+        Schema::create('endereco', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('cep',8); 
+            $table->string('cidade', 30);
+            $table->string('bairro', 50);
+            $table->string('rua', 50);
+            $table->string('numero', 15);
+        });
     }
 
     /**
@@ -79,6 +90,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados', 'convidado', 'projeto', 'instituicao', 'patrocinador');
+        Schema::dropIfExists('associados', 'convidado', 'projeto', 'instituicao', 'patrocinador', 'endereco');
     }
 };
