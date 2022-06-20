@@ -16,9 +16,13 @@
         <!-- //Cargo -->
         <div class="form-group">
                 {!! Form::label('cargo', 'Cargo:') !!}
-                {!! Form::text('cargo', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::select('cargo',
+                                  array('Presidente' => 'Presidente',
+                                        'Vice-Presidente'  => 'Vice-Presidente',
+                                        'Secretario' => 'Secretario'),
+                                    ['class'=>'form-control', 'required']) !!}
         </div>
-
+        
         <div class="form-group">
             {!! Form::submit('Criar Cargo', ['class'=>'btn btn-primary']) !!}
             {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
