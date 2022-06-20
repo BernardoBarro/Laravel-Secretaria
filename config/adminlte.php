@@ -235,6 +235,11 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
+            'text' => 'Cargo',
+            'url' => 'cargo',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'Endereço',
             'url' => 'endereco',
             'icon' => 'fas fa-fw fa-users',
