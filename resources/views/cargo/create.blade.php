@@ -20,7 +20,7 @@
                                   array('Presidente' => 'Presidente',
                                         'Vice-Presidente'  => 'Vice-Presidente',
                                         'Secretario' => 'Secretario'),
-                                    ['class'=>'form-control', 'required']) !!}
+                                    'Presidente', ['class'=>'form-control', 'required']) !!}
         </div>
         
         <div class="form-group">
