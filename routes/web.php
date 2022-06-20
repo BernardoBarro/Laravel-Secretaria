@@ -87,14 +87,14 @@ Route::group(['prefix'=>'endereco', 'where'=>['id'=>'[0-9]+']], function(){
     Route::put('/{id}/update',  ['as'=>'endereco.update',  'uses'=>'\App\Http\Controllers\EnderecoController@update' ]);
 });
 
-//Acesso
-Route::group(['prefix'=>'acesso', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'acesso',         'uses'=>'\App\Http\Controllers\AcessoController@index'  ]);
-    Route::get('/create',       ['as'=>'acesso.create',  'uses'=>'\App\Http\Controllers\AcessoController@create' ]);
-    Route::post('/store',       ['as'=>'acesso.store',   'uses'=>'\App\Http\Controllers\AcessoController@store'  ]);
-    Route::get('/{id}/destroy', ['as'=>'acesso.destroy', 'uses'=>'\App\Http\Controllers\AcessoController@destroy']);
-    Route::get('/{id}/edit',    ['as'=>'acesso.edit',    'uses'=>'\App\Http\Controllers\AcessoController@edit'   ]);
-    Route::put('/{id}/update',  ['as'=>'acesso.update',  'uses'=>'\App\Http\Controllers\AcessoController@update' ]);
+//Cargo
+Route::group(['prefix'=>'cargo', 'where'=>['id'=>'[0-9]+']], function(){
+    Route::get('/',             ['as'=>'cargo',         'uses'=>'\App\Http\Controllers\CargoController@index'  ]);
+    Route::get('/create',       ['as'=>'cargo.create',  'uses'=>'\App\Http\Controllers\CargoController@create' ]);
+    Route::post('/store',       ['as'=>'cargo.store',   'uses'=>'\App\Http\Controllers\CargoController@store'  ]);
+    Route::get('/{id}/destroy', ['as'=>'cargo.destroy', 'uses'=>'\App\Http\Controllers\CargoController@destroy']);
+    Route::get('/{id}/edit',    ['as'=>'cargo.edit',    'uses'=>'\App\Http\Controllers\CargoController@edit'   ]);
+    Route::put('/{id}/update',  ['as'=>'cargo.update',  'uses'=>'\App\Http\Controllers\CargoController@update' ]);
 });
 
 Auth::routes();
