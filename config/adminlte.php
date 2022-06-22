@@ -226,10 +226,47 @@ return [
 
     'menu' => [
 
-        ['header' => 'ASSOCIADOS'],
+        [
+            'header' => '• MENU',
+        ],
         [
             'text' => 'Associado',
             'url' => 'associado',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Cargo',
+            'url' => 'cargo',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Endereço',
+            'url' => 'endereco',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Instituicao',
+            'url' => 'instituicao',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Convidado',
+            'url' => 'convidado',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Patrocinador',
+            'url' => 'patrocinador',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Projeto',
+            'url' => 'projeto',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Reunião',
+            'url' => 'reuniao',
             'icon' => 'fas fa-fw fa-users',
         ],
         // // Navbar items:

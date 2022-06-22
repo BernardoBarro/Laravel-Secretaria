@@ -2,8 +2,8 @@
 
 @section('content')
     @foreach($associados as $associado)
-        <li>Associado: {{ $associado->nome }}</li>    
-        <li>Associado: {{ $associado->ocupacao }}</li>
+        <li>Nome: {{ $associado->nome }}</li>    
+        <li>Ocupação: {{ $associado->ocupacao }}</li>
         <br>
     @endforeach    
 
