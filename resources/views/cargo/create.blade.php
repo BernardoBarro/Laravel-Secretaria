@@ -15,12 +15,18 @@
 
         <!-- //Cargo -->
         <div class="form-group">
-                {!! Form::label('cargo', 'Cargo:') !!}
-                {!! Form::select('cargo',
+                {!! Form::label('nome', 'Cargo:') !!}
+                {!! Form::select('nome',
                                   array('Presidente' => 'Presidente',
                                         'Vice-Presidente'  => 'Vice-Presidente',
                                         'Secretario' => 'Secretario'),
-                                    'Presidente', ['class'=>'form-control', 'required']) !!}
+                                        'Presidente', ['class'=>'form-control', 'required']) !!}
+        </div>
+
+        <!-- //Descrição -->
+        <div class="form-group">
+                {!! Form::label('descricao', 'Descrição:') !!}
+                {!! Form::date('descricao', null, ['class'=>'form-control', 'required']) !!}
         </div>
         
         <div class="form-group">

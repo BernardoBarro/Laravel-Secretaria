@@ -7,3 +7,7 @@
         <br>
     @endforeach    
 @stop
+
+@section('table-delete')
+"projeto"
+@endsection

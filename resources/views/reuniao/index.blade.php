@@ -9,3 +9,7 @@
         <br>
     @endforeach    
 @stop
+
+@section('table-delete')
+"reuniao"
+@endsection

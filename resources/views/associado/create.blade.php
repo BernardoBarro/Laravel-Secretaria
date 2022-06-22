@@ -18,41 +18,17 @@
                 {!! Form::label('nome', 'Nome:') !!}
                 {!! Form::text('nome', null, ['class'=>'form-control', 'required']) !!}
         </div>
-        
-        <!-- //Genero -->
-        <div class="form-group">
-                {!! Form::label('genero', 'Gênero:') !!}
-                {!! Form::text('genero', null, ['class'=>'form-control', 'required']) !!}
-        </div>
 
          <!-- //Cargo -->
          <div class="form-group">
                 {!! Form::label('cargo', 'Cargo:') !!}
                 {!! Form::text('cargo', null, ['class'=>'form-control', 'required']) !!}
         </div>
-        
-        <!-- //Ocupacao -->
-        <div class="form-group">
-                {!! Form::label('ocupacao', 'Ocupacao:') !!}
-                {!! Form::text('ocupacao', null, ['class'=>'form-control', 'required']) !!}
-        </div>
 
         <!-- //Email -->
         <div class="form-group">
                 {!! Form::label('email', 'Email:') !!}
                 {!! Form::text('email', null, ['class'=>'form-control', 'required']) !!}
-        </div>
-
-        <!-- //Telefone -->
-        <div class="form-group">
-                {!! Form::label('telefone', 'Telefone:') !!}
-                {!! Form::text('telefone', null, ['class'=>'form-control', 'required']) !!}
-        </div>
-
-        <!-- //Padrinho -->
-        <div class="form-group">
-                {!! Form::label('padrinho', 'Padrinho:') !!}
-                {!! Form::text('padrinho', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <!-- //Dt-nascimento -->

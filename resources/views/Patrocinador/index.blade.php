@@ -8,3 +8,7 @@
         <br>
     @endforeach    
 @stop
+
+@section('table-delete')
+"patrocinador"
+@endsection

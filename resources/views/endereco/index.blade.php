@@ -10,3 +10,7 @@
         <br>
     @endforeach    
 @stop
+
+@section('table-delete')
+"endereco"
+@endsection

@@ -37,13 +37,6 @@
                 {!! Form::text('rua', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
-        <!-- //Numero -->
-        <div class="form-group">
-                {!! Form::label('numero', 'Numero:') !!}
-                {!! Form::text('numero', null, ['class'=>'form-control', 'required']) !!}
-        </div>
-
-
         <div class="form-group">
             {!! Form::submit('Criar Endereço', ['class'=>'btn btn-primary']) !!}
             {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}

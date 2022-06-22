@@ -18,13 +18,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nome',50);
-            $table->string('genero', 15);
-            $table->string('ocupacao', 50);
             $table->date('dt_nascimento');
             $table->string('email', 50);
             $table->date('dt_admissao');
-            $table->string('telefone', 50);
-            $table->string('padrinho', 50);
             $table->string('cargo', 50);
         });
 
@@ -79,12 +75,12 @@ return new class extends Migration
             $table->string('cidade', 30);
             $table->string('bairro', 50);
             $table->string('rua', 50);
-            $table->string('numero', 15);
         });
         Schema::create('cargo', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('cargo',25); 
+            $table->string('nome',25); 
+            $table->string('descricao',50); 
         });
     }
 

@@ -9,5 +9,5 @@ class Associado extends Model
 {
     use HasFactory;
     protected $table = "associados";
-    protected $fillable = ['nome', 'genero', 'ocupacao', 'dt_nascimento', 'email', 'dt_admissao', 'telefone', 'padrinho', 'cargo'];
+    protected $fillable = ['nome', 'dt_nascimento', 'email', 'dt_admissao', 'cargo'];
 }
