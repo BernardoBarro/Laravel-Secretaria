@@ -5,7 +5,6 @@
 
 	<table class="table table-stripe table-bordered table-hover">
 		<thead>
-            <th>Projeto n°:</th>
 			<th>Nome do Projeto:</th>
 			<th>Descrição:</th>
             <th>Ações:</th>
@@ -14,7 +13,6 @@
 		<tbody>
 			@foreach($projetos as $projeto)
 				<tr>
-                    <td>{{ $projeto->id }}</td>
                     <td>{{ $projeto->nome }}</td>
 					<td>{{ $projeto->descricao }}</td>
 					<td>
