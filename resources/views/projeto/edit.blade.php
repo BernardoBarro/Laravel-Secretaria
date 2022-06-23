@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Editando Projeto: {{ $projeto->nome }}</h3>
+    <h3>Edição de Projeto: {{ $projeto->nome }}</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">

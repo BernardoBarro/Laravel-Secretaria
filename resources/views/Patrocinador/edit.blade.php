@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Editando o Patrocinador {{ $patrocinador->nome }}</h3>
+    <h3>Edição de Patrocinador {{ $patrocinador->nome }}</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">
