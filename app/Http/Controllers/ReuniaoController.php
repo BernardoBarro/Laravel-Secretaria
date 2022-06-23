@@ -28,10 +28,10 @@ class ReuniaoController extends Controller
         return redirect()->route('reuniao');
     }
 
-    public function edit($id) {
-       $reuniao = Reuniao::find($id);
-       return view('reuniao.edit', compact('reuniao'));
-    }
+    public function edit(Request $request) {
+        $reuniao = Reuniao::find(\Crypt::decrypt($request->get('id')));
+        return view('reuniao.edit', compact('reuniao'));
+     }
 
     public function update(ReuniaoRequest $request, $id) {
        Reuniao::find($id)->update($request->all());
