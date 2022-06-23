@@ -28,9 +28,9 @@ class ConvidadoController extends Controller
         return redirect()->route('convidado');
     }
 
-    public function edit($id) {
-       $convidado = Convidado::find($id);
-       return view('convidado.edit', compact('convidado'));
+    public function edit(Request $request) {
+        $convidado = Convidado::find(\Crypt::decrypt($request->get('id')));
+        return view('convidado.edit', compact('convidado'));
     }
 
     public function update(ConvidadoRequest $request, $id) {
