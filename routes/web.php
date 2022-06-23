@@ -53,7 +53,7 @@ Route::group(['prefix'=>'projeto', 'where'=>['id'=>'[0-9]+']], function(){
     Route::get('/create',       ['as'=>'projeto.create',  'uses'=>'\App\Http\Controllers\ProjetoController@create' ]);
     Route::post('/store',       ['as'=>'projeto.store',   'uses'=>'\App\Http\Controllers\ProjetoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'projeto.destroy', 'uses'=>'\App\Http\Controllers\ProjetoController@destroy']);
-    Route::get('/{id}/edit',    ['as'=>'projeto.edit',    'uses'=>'\App\Http\Controllers\ProjetoController@edit'   ]);
+    Route::get('edit',    ['as'=>'projeto.edit',    'uses'=>'\App\Http\Controllers\ProjetoController@edit'   ]);
     Route::put('/{id}/update',  ['as'=>'projeto.update',  'uses'=>'\App\Http\Controllers\ProjetoController@update' ]);
 });
 

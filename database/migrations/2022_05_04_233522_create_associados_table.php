@@ -47,7 +47,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nome',50); 
-            $table->string('descricao', 50);
+            $table->string('descricao', 250);
         });
 
         //Tabela das Instituições
