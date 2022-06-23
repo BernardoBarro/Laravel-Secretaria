@@ -76,6 +76,8 @@ return new class extends Migration
             $table->string('bairro', 50);
             $table->string('rua', 50);
         });
+
+        //Tabela dos Cargos
         Schema::create('cargo', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
