@@ -13,9 +13,13 @@
 
     {!! Form::open(['route'=>['cargo.update', 'id'=>$cargo->id], 'method'=>'put']) !!}
 
-        <div class="form-group">
-                {!! Form::label('nome', 'Nome:') !!}
-                {!! Form::text('nome', $cargo->nome, ['class'=>'form-control', 'required']) !!}
+    <div class="form-group">
+                {!! Form::label('nome', 'Come:') !!}
+                {!! Form::select('nome',
+                                  array('Presidente' => 'Presidente',
+                                        'Vice-Presidente'  => 'Vice-Presidente',
+                                        'Secretario' => 'Secretario'),
+                                        'Presidente', ['class'=>'form-control', 'required']) !!}
         </div>
 
         <div class="form-group">

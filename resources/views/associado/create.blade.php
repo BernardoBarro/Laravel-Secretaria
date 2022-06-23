@@ -22,7 +22,11 @@
          <!-- //Cargo -->
          <div class="form-group">
                 {!! Form::label('cargo', 'Cargo:') !!}
-                {!! Form::text('cargo', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::select('cargo',
+                                  array('Presidente' => 'Presidente',
+                                        'Vice-Presidente'  => 'Vice-Presidente',
+                                        'Secretario' => 'Secretario'),
+                                        'Presidente', ['class'=>'form-control', 'required']) !!}
         </div>
 
         <!-- //Email -->
@@ -44,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Criar Ator', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Criar Associado', ['class'=>'btn btn-primary']) !!}
             {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
         </div>
 
