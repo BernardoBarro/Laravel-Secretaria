@@ -245,7 +245,7 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Instituicao',
+            'text' => 'Instituição',
             'url' => 'instituicao',
             'icon' => 'fas fa-fw fa-users',
         ],
