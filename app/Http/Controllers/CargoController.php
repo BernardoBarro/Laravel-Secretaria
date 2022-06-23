@@ -28,9 +28,9 @@ class CargoController extends Controller
         return redirect()->route('cargo');
     }
 
-    public function edit($id) {
-       $cargo = Cargo::find($id);
-       return view('cargo.edit', compact('cargo'));
+    public function edit(Request $request) {
+        $cargo = Cargo::find(\Crypt::decrypt($request->get('id')));
+        return view('cargo.edit', compact('cargo'));
     }
 
     public function update(CargoRequest $request, $id) {
