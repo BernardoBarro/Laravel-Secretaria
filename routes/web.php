@@ -39,7 +39,7 @@ Route::group(['prefix'=>'convidado', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Reunião
 Route::group(['prefix'=>'reuniao', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'reuniao',         'uses'=>'\App\Http\Controllers\ReuniaoController@index'  ]);
+    Route::any('',              ['as'=>'reuniao',         'uses'=>'\App\Http\Controllers\ReuniaoController@index'  ]);
     Route::get('/create',       ['as'=>'reuniao.create',  'uses'=>'\App\Http\Controllers\ReuniaoController@create' ]);
     Route::post('/store',       ['as'=>'reuniao.store',   'uses'=>'\App\Http\Controllers\ReuniaoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'reuniao.destroy', 'uses'=>'\App\Http\Controllers\ReuniaoController@destroy']);
