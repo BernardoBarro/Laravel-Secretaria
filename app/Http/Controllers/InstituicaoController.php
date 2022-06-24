@@ -8,10 +8,20 @@ use App\Http\Requests\InstituicaoRequest;
 
 class InstituicaoController extends Controller
 {
-    public function index(){
-        $instituicao = Instituicao::All();
-        return view('instituicao.index',['instituicaos' =>$instituicao]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$instituicaos = \DB::table('instituicao')
+	            ->select('instituicao.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $instituicaos = Instituicao::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('atores?desc_filtro='.$filtragem);
+		return view('instituicao.index', ['instituicao'=>$instituicaos]);
+	}
 
     public function create() {
         return view('instituicao.create');

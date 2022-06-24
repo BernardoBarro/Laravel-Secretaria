@@ -59,7 +59,7 @@ Route::group(['prefix'=>'projeto', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Instituição
 Route::group(['prefix'=>'instituicao', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'instituicao',         'uses'=>'\App\Http\Controllers\InstituicaoController@index'  ]);
+    Route::any('',              ['as'=>'instituicao',         'uses'=>'\App\Http\Controllers\InstituicaoController@index'  ]);
     Route::get('/create',       ['as'=>'instituicao.create',  'uses'=>'\App\Http\Controllers\InstituicaoController@create' ]);
     Route::post('/store',       ['as'=>'instituicao.store',   'uses'=>'\App\Http\Controllers\InstituicaoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'instituicao.destroy', 'uses'=>'\App\Http\Controllers\InstituicaoController@destroy']);
