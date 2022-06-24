@@ -79,7 +79,7 @@ Route::group(['prefix'=>'patrocinador', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Endereço
 Route::group(['prefix'=>'endereco', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'endereco',         'uses'=>'\App\Http\Controllers\EnderecoController@index'  ]);
+    Route::any('',              ['as'=>'endereco',         'uses'=>'\App\Http\Controllers\EnderecoController@index'  ]);
     Route::get('/create',       ['as'=>'endereco.create',  'uses'=>'\App\Http\Controllers\EnderecoController@create' ]);
     Route::post('/store',       ['as'=>'endereco.store',   'uses'=>'\App\Http\Controllers\EnderecoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'endereco.destroy', 'uses'=>'\App\Http\Controllers\EnderecoController@destroy']);
