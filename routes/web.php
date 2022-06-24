@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 //Associado
 Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::any('/',             ['as'=>'associado',         'uses'=>'\App\Http\Controllers\AssociadoController@index'  ]);
+    Route::any('',              ['as'=>'associado',         'uses'=>'\App\Http\Controllers\AssociadoController@index'  ]);
     Route::get('/create',       ['as'=>'associado.create',  'uses'=>'\App\Http\Controllers\AssociadoController@create' ]);
     Route::post('/store',       ['as'=>'associado.store',   'uses'=>'\App\Http\Controllers\AssociadoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'associado.destroy', 'uses'=>'\App\Http\Controllers\AssociadoController@destroy']);
