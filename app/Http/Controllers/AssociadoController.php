@@ -28,9 +28,9 @@ class AssociadoController extends Controller
         return redirect()->route('associado');
     }
 
-    public function edit($id) {
-       $associado = Associado::find($id);
-       return view('associado.edit', compact('associado'));
+    public function edit(Request $request) {
+        $associado = Associado::find(\Crypt::decrypt($request->get('id')));
+        return view('associado.edit', compact('associado'));
     }
 
     public function update(AssociadoRequest $request, $id) {

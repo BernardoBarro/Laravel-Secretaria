@@ -28,10 +28,10 @@ class InstituicaoController extends Controller
         return redirect()->route('instituicao');
     }
 
-    public function edit($id) {
-       $instituicao = Instituicao::find($id);
-       return view('instituicao.edit', compact('instituicao'));
-    }
+    public function edit(Request $request) {
+        $instituicao = Instituicao::find(\Crypt::decrypt($request->get('id')));
+        return view('instituicao.edit', compact('instituicao'));
+     }
 
     public function update(InstituicaoRequest $request, $id) {
         Instituicao::find($id)->update($request->all());

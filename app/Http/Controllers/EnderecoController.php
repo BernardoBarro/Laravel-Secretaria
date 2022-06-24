@@ -28,10 +28,10 @@ class EnderecoController extends Controller
         return redirect()->route('endereco');
     }
 
-    public function edit($id) {
-       $endereco = Endereco::find($id);
-       return view('endereco.edit', compact('endereco'));
-    }
+    public function edit(Request $request) {
+        $endereco = Endereco::find(\Crypt::decrypt($request->get('id')));
+        return view('endereco.edit', compact('endereco'));
+     }
 
     public function update(EnderecoRequest $request, $id) {
        Endereco::find($id)->update($request->all());

@@ -223,9 +223,17 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
-
     'menu' => [
 
+        [
+            'type' => 'sidebar-menu-search',
+            'text' => 'Pesquisar',
+        ],
+        [
+            'text' => 'blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
+        ],
         [
             'header' => '• MENU',
         ],
@@ -245,7 +253,7 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
-            'text' => 'Instituicao',
+            'text' => 'Instituição',
             'url' => 'instituicao',
             'icon' => 'fas fa-fw fa-users',
         ],
@@ -269,27 +277,18 @@ return [
             'url' => 'reuniao',
             'icon' => 'fas fa-fw fa-users',
         ],
-        // // Navbar items:
-        // [
-        //     'type'         => 'navbar-search',
-        //     'text'         => 'search',
-        //     'topnav_right' => true,
-        // ],
-        // [
-        //     'type'         => 'fullscreen-widget',
-        //     'topnav_right' => true,
-        // ],
+        // Navbar items:
+        [
+            'type'         => 'navbar-search',
+            'text'         => 'search',
+            'topnav_right' => true,
+        ],
+        [
+            'type'         => 'fullscreen-widget',
+            'topnav_right' => true,
+        ],
 
-        // // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
-        // [
-        //     'text' => 'blog',
-        //     'url'  => 'admin/blog',
-        //     'can'  => 'manage-blog',
-        // ],
+        
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',

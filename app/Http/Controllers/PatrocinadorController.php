@@ -28,10 +28,10 @@ class PatrocinadorController extends Controller
         return redirect()->route('patrocinador');
     }
 
-    public function edit($id) {
-       $patrocinador = Patrocinador::find($id);
-       return view('patrocinador.edit', compact('patrocinador'));
-    }
+    public function edit(Request $request) {
+        $patrocinador = Patrocinador::find(\Crypt::decrypt($request->get('id')));
+        return view('patrocinador.edit', compact('patrocinador'));
+     }
 
     public function update(PatrocinadorRequest $request, $id) {
         Patrocinador::find($id)->update($request->all());

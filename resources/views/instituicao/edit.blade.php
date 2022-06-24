@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Nova Instituição:</h3>
+    <h3>Edição de Instituição: {{ $instituicao->nome }}</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">
@@ -11,25 +11,21 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>'instituicao/store']) !!}
+    {!! Form::open(['route'=>['instituicao.update', 'id'=>$instituicao->id], 'method'=>'put']) !!}
 
-        <!-- //Nome da Instituição -->
         <div class="form-group">
-                {!! Form::label('nome', 'Nome da Instituição:') !!}
-                {!! Form::text('nome', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::label('nome', 'Nome:') !!}
+                {!! Form::text('nome', $instituicao->nome, ['class'=>'form-control', 'required']) !!}
         </div>
-    
-        <!-- //Contato -->
+
         <div class="form-group">
                 {!! Form::label('contato', 'Contato:') !!}
-                {!! Form::text('contato', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::text('contato', $instituicao->contato, ['class'=>'form-control', 'required']) !!}
         </div>
-
 
         <div class="form-group">
-            {!! Form::submit('Criar Instituição', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Editar Instituicao', ['class'=>'btn btn-primary']) !!}
             {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
         </div>
-        
     {!! Form::close() !!}
 @stop

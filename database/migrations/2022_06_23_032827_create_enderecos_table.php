@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        //Tabela dos Associados
-        Schema::create('associados', function (Blueprint $table) {
+       //Tabela dos Endereços
+        Schema::create('endereco', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nome',50);
-            $table->date('dt_nascimento');
-            $table->string('email', 50);
-            $table->date('dt_admissao');
-            $table->string('cargo', 50);
+            $table->string('cep',8); 
+            $table->string('cidade', 30);
+            $table->string('bairro', 50);
+            $table->string('rua', 50);
         });
-
     }
 
     /**
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('associados');
+        Schema::dropIfExists('endereco');
     }
 };

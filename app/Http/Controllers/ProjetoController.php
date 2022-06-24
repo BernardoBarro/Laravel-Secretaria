@@ -28,8 +28,8 @@ class ProjetoController extends Controller
         return redirect()->route('projeto');
     }
 
-    public function edit($id) {
-       $projeto = Projeto::find($id);
+    public function edit(Request $request) {
+       $projeto = Projeto::find(\Crypt::decrypt($request->get('id')));
        return view('projeto.edit', compact('projeto'));
     }
 
