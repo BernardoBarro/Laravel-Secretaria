@@ -69,7 +69,7 @@ Route::group(['prefix'=>'instituicao', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Patrocinador
 Route::group(['prefix'=>'patrocinador', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'patrocinador',         'uses'=>'\App\Http\Controllers\PatrocinadorController@index'  ]);
+    Route::any('',              ['as'=>'patrocinador',         'uses'=>'\App\Http\Controllers\PatrocinadorController@index'  ]);
     Route::get('/create',       ['as'=>'patrocinador.create',  'uses'=>'\App\Http\Controllers\PatrocinadorController@create' ]);
     Route::post('/store',       ['as'=>'patrocinador.store',   'uses'=>'\App\Http\Controllers\PatrocinadorController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'patrocinador.destroy', 'uses'=>'\App\Http\Controllers\PatrocinadorController@destroy']);
