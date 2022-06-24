@@ -24,6 +24,15 @@ class AssociadoController extends Controller
     }
 
     public function destroy($id) {
+        // try{
+        //     Associado::find($id)->delete();
+        //     $ret = array('status'=>200, 'msg'=>'null');
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //     $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        // } catch (\PDOException $e) {
+        //     $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        // }
+        // return $ret;
         Associado::find($id)->delete();
         return redirect()->route('associado');
     }

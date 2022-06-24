@@ -13,6 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
+        
+        Schema::create('cargo', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('nome',25); 
+            $table->string('descricao',50); 
+        });
+
+        //Tabela dos Endereços
+        Schema::create('endereco', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('cep',8); 
+            $table->string('cidade', 30);
+            $table->string('bairro', 50);
+            $table->string('rua', 50);
+        });
+
         //Tabela dos Associados
         Schema::create('associados', function (Blueprint $table) {
             $table->id();
@@ -21,7 +39,10 @@ return new class extends Migration
             $table->date('dt_nascimento');
             $table->string('email', 50);
             $table->date('dt_admissao');
-            $table->string('cargo', 50);
+            $table->bigInteger('cargo_id')->unsigned()->nullable();
+            $table->foreign('cargo_id')->references('id')->on('cargo');
+            $table->bigInteger('endereco_id')->unsigned()->nullable();
+            $table->foreign('endereco_id')->references('id')->on('endereco');
         });
 
         //Tabela dos Convidados
@@ -65,22 +86,6 @@ return new class extends Migration
             $table->string('nome',50); 
             $table->string('valor', 15);
             $table->string('descricao', 50);
-        });
-
-        //Tabela dos Endereços
-        Schema::create('endereco', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('cep',8); 
-            $table->string('cidade', 30);
-            $table->string('bairro', 50);
-            $table->string('rua', 50);
-        });
-        Schema::create('cargo', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('nome',25); 
-            $table->string('descricao',50); 
         });
     }
 

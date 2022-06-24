@@ -9,5 +9,13 @@ class Associado extends Model
 {
     use HasFactory;
     protected $table = "associados";
-    protected $fillable = ['nome', 'dt_nascimento', 'email', 'dt_admissao', 'cargo'];
+    protected $fillable = ['nome', 'dt_nascimento', 'email', 'dt_admissao', 'cargo_id', 'endereco_id'];
+
+    public function cargo() {
+        return $this->belongsTo("App\Models\Cargo");
+    }
+
+    public function endereco() {
+        return $this->belongsTo("App\Models\Endereco");
+    }
 }
