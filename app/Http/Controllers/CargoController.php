@@ -8,10 +8,20 @@ use App\Http\Requests\CargoRequest;
 
 class CargoController extends Controller
 {
-    public function index(){
-        $cargo = Cargo::All();
-        return view('cargo.index',['cargos' =>$cargo]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$cargos = \DB::table('cargo')
+	            ->select('cargo.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $cargos = Cargo::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('cargo?desc_filtro='.$filtragem);
+		return view('cargo.index', ['cargo'=>$cargos]);
+	}
 
     public function create() {
         return view('cargo.create');

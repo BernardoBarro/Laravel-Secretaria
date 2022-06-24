@@ -89,7 +89,7 @@ Route::group(['prefix'=>'endereco', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Cargo
 Route::group(['prefix'=>'cargo', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'cargo',         'uses'=>'\App\Http\Controllers\CargoController@index'  ]);
+    Route::any('',              ['as'=>'cargo',         'uses'=>'\App\Http\Controllers\CargoController@index'  ]);
     Route::get('/create',       ['as'=>'cargo.create',  'uses'=>'\App\Http\Controllers\CargoController@create' ]);
     Route::post('/store',       ['as'=>'cargo.store',   'uses'=>'\App\Http\Controllers\CargoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'cargo.destroy', 'uses'=>'\App\Http\Controllers\CargoController@destroy']);
