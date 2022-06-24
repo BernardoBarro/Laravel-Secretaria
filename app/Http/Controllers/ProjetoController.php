@@ -40,13 +40,7 @@ class ProjetoController extends Controller
         }
         return redirect()->route('projeto');
     }
-
-    // public function store(projetoRequest $request) {
-    //     $novo_projeto = $request->all();
-    //     Projeto::create($novo_projeto);
-    //     return redirect()->route('projeto');
-    // }
-
+    
     public function destroy($id) {
         Projeto::find($id)->delete();
         return redirect()->route('projeto');
