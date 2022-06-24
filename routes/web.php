@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 //Associado
 Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'associado',         'uses'=>'\App\Http\Controllers\AssociadoController@index'  ]);
+    Route::any('/',             ['as'=>'associado',         'uses'=>'\App\Http\Controllers\AssociadoController@index'  ]);
     Route::get('/create',       ['as'=>'associado.create',  'uses'=>'\App\Http\Controllers\AssociadoController@create' ]);
     Route::post('/store',       ['as'=>'associado.store',   'uses'=>'\App\Http\Controllers\AssociadoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'associado.destroy', 'uses'=>'\App\Http\Controllers\AssociadoController@destroy']);
@@ -29,7 +29,7 @@ Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Convidado
 Route::group(['prefix'=>'convidado', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'convidado',         'uses'=>'\App\Http\Controllers\ConvidadoController@index'  ]);
+    Route::any('',             ['as'=>'convidado',         'uses'=>'\App\Http\Controllers\ConvidadoController@index'  ]);
     Route::get('/create',       ['as'=>'convidado.create',  'uses'=>'\App\Http\Controllers\ConvidadoController@create' ]);
     Route::post('/store',       ['as'=>'convidado.store',   'uses'=>'\App\Http\Controllers\ConvidadoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'convidado.destroy', 'uses'=>'\App\Http\Controllers\ConvidadoController@destroy']);
