@@ -18,7 +18,8 @@ class ConvidadoController extends Controller
         else
             $convidados = Convidado::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10);
+        					->paginate(10)
+                            ->setpath('convidado?desc_filtro='.$filtragem);
 		return view('convidado.index', ['convidado'=>$convidados]);
 	}
 

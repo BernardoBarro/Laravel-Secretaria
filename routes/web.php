@@ -29,7 +29,7 @@ Route::group(['prefix'=>'associado', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Convidado
 Route::group(['prefix'=>'convidado', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::any('',             ['as'=>'convidado',         'uses'=>'\App\Http\Controllers\ConvidadoController@index'  ]);
+    Route::any('',              ['as'=>'convidado',         'uses'=>'\App\Http\Controllers\ConvidadoController@index'  ]);
     Route::get('/create',       ['as'=>'convidado.create',  'uses'=>'\App\Http\Controllers\ConvidadoController@create' ]);
     Route::post('/store',       ['as'=>'convidado.store',   'uses'=>'\App\Http\Controllers\ConvidadoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'convidado.destroy', 'uses'=>'\App\Http\Controllers\ConvidadoController@destroy']);
@@ -49,7 +49,7 @@ Route::group(['prefix'=>'reuniao', 'where'=>['id'=>'[0-9]+']], function(){
 
 //Projeto
 Route::group(['prefix'=>'projeto', 'where'=>['id'=>'[0-9]+']], function(){
-    Route::get('/',             ['as'=>'projeto',         'uses'=>'\App\Http\Controllers\ProjetoController@index'  ]);
+    Route::any('',              ['as'=>'projeto',         'uses'=>'\App\Http\Controllers\ProjetoController@index'  ]);
     Route::get('/create',       ['as'=>'projeto.create',  'uses'=>'\App\Http\Controllers\ProjetoController@create' ]);
     Route::post('/store',       ['as'=>'projeto.store',   'uses'=>'\App\Http\Controllers\ProjetoController@store'  ]);
     Route::get('/{id}/destroy', ['as'=>'projeto.destroy', 'uses'=>'\App\Http\Controllers\ProjetoController@destroy']);
