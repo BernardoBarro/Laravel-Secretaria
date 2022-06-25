@@ -30,7 +30,7 @@
         
         <div class="form-group">
                 {!! Form::label('dt_reuniao', 'Data da reunião:') !!}
-                {!! Form::date('dt_reuniao', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::date('dt_reuniao', $reuniao->dt_reuniao, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <div class="form-group">

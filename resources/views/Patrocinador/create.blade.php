@@ -22,12 +22,12 @@
         <!-- //Valor a ser contribuido -->
         <div class="form-group">
                 {!! Form::label('valor', 'Valor:') !!}
-                {!! Form::text('valor', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::number('valor', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <!-- //Descrição -->
         <div class="form-group">
-                {!! Form::label('descricao', 'Descricao:') !!}
+                {!! Form::label('descricao', 'Descrição:') !!}
                 {!! Form::text('descricao', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
