@@ -14,7 +14,7 @@
     {!! Form::open(['route'=>['cargo.update', 'id'=>$cargo->id], 'method'=>'put']) !!}
 
     <div class="form-group">
-                {!! Form::label('nome', 'Come:') !!}
+                {!! Form::label('nome', 'Nome:') !!}
                 {!! Form::select('nome',
                                   array('Presidente' => 'Presidente',
                                         'Vice-Presidente'  => 'Vice-Presidente',
