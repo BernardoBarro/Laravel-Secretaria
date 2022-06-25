@@ -248,6 +248,11 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
+            'text' => 'Convidado',
+            'url' => 'convidado',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'Endereço',
             'url' => 'endereco',
             'icon' => 'fas fa-fw fa-users',
@@ -255,11 +260,6 @@ return [
         [
             'text' => 'Instituição',
             'url' => 'instituicao',
-            'icon' => 'fas fa-fw fa-users',
-        ],
-        [
-            'text' => 'Convidado',
-            'url' => 'convidado',
             'icon' => 'fas fa-fw fa-users',
         ],
         [

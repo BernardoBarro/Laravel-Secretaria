@@ -19,13 +19,17 @@
         </div>
 
         <div class="form-group">
+                {!! Form::label('valor', 'Valor:') !!}
+                {!! Form::number('valor', $patrocinador->valor, ['class'=>'form-control', 'required']) !!}
+        </div>
+
+        <div class="form-group">
                 {!! Form::label('descricao', 'Descrição:') !!}
                 {!! Form::text('descricao', $patrocinador->descricao, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <div class="form-group">
             {!! Form::submit('Editar Patrocinador', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
         </div>
     {!! Form::close() !!}
 @stop

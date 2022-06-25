@@ -24,8 +24,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Editar Instituicao', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
+            {!! Form::submit('Editar Instituição', ['class'=>'btn btn-primary']) !!}
         </div>
     {!! Form::close() !!}
 @stop

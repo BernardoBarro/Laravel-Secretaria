@@ -16,7 +16,7 @@
         <!-- //Cep -->
         <div class="form-group">
                 {!! Form::label('cep', 'Cep:') !!}
-                {!! Form::text('cep', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::number('cep', null, ['class'=>'form-control', 'required']) !!}
         </div>
     
         <!-- //Cidade -->
