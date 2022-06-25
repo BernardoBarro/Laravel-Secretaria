@@ -8,10 +8,20 @@ use App\Http\Requests\AssociadoRequest;
 
 class AssociadoController extends Controller
 {
-    public function index(){
-        $associados = Associado::All();
-        return view('associado.index',['associados' =>$associados]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$associados = \DB::table('associados')
+	            ->select('associados.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $associados = Associado::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('associado?desc_filtro='.$filtragem);
+		return view('associado.index', ['associado'=>$associados]);
+	}
 
     public function create() {
         return view('associado.create');

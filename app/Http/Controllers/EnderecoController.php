@@ -8,10 +8,20 @@ use App\Http\Requests\EnderecoRequest;
 
 class EnderecoController extends Controller
 {
-    public function index(){
-        $endereco = Endereco::All();
-        return view('endereco.index',['enderecos' =>$endereco]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$enderecos = \DB::table('endereco')
+	            ->select('endereco.*', 'cidade')
+	            ->paginate(10);
+        }
+        else
+            $enderecos = Endereco::where('cidade', 'like', '%'.$filtragem.'%')
+        					->orderBy("cidade")
+        					->paginate(10)
+                            ->setpath('endereco?desc_filtro='.$filtragem);
+		return view('endereco.index', ['endereco'=>$enderecos]);
+	}
 
     public function create() {
         return view('endereco.create');

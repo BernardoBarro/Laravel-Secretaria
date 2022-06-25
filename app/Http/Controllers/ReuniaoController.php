@@ -8,10 +8,20 @@ use App\Http\Requests\ReuniaoRequest;
 
 class ReuniaoController extends Controller
 {
-    public function index(){
-        $reuniao = Reuniao::All();
-        return view('reuniao.index',['reuniaos' =>$reuniao]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$reuinaos = \DB::table('reuniao')
+	            ->select('reuniao.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $reuinaos = Reuniao::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('reuniao?desc_filtro='.$filtragem);
+		return view('reuniao.index', ['reuniao'=>$reuinaos]);
+	}
 
     public function create() {
         return view('reuniao.create');

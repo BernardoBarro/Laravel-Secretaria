@@ -8,10 +8,20 @@ use App\Http\Requests\PatrocinadorRequest;
 
 class PatrocinadorController extends Controller
 {
-    public function index(){
-        $patrocinador = Patrocinador::All();
-        return view('patrocinador.index',['patrocinadores' =>$patrocinador]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$patrocinadores = \DB::table('patrocinador')
+	            ->select('patrocinador.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $patrocinadores = Patrocinador::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('patrocinador?desc_filtro='.$filtragem);
+		return view('patrocinador.index', ['patrocinador'=>$patrocinadores]);
+	}
 
     public function create() {
         return view('patrocinador.create');

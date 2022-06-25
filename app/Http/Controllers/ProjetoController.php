@@ -8,10 +8,20 @@ use App\Http\Requests\ProjetoRequest;
 
 class ProjetoController extends Controller
 {
-    public function index(){
-        $projeto = Projeto::All();
-        return view('projeto.index',['projetos' =>$projeto]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$projetos = \DB::table('projeto')
+	            ->select('projeto.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $projetos = Projeto::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('atores?desc_filtro='.$filtragem);
+		return view('projeto.index', ['projeto'=>$projetos]);
+	}
 
     public function create() {
         return view('projeto.create');

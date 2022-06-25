@@ -8,10 +8,20 @@ use App\Http\Requests\ConvidadoRequest;
 
 class ConvidadoController extends Controller
 {
-    public function index(){
-        $convidado = Convidado::All();
-        return view('convidado.index',['convidados' =>$convidado]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$convidados = \DB::table('convidado')
+	            ->select('convidado.*', 'nome')
+	            ->paginate(10);
+        }
+        else
+            $convidados = Convidado::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(10)
+                            ->setpath('convidado?desc_filtro='.$filtragem);
+		return view('convidado.index', ['convidado'=>$convidados]);
+	}
 
     public function create() {
         return view('convidado.create');
