@@ -21,29 +21,31 @@
 			<th>Nome:</th>
             <th>E-mail:</th>
             <th>Cargo:</th>
+            <th>Endereço:</th>
             <th>Nascimento:</th>
             <th>Admissão:</th>
             <th>Ações:</th>
 		</thead>
 
 		<tbody>
-			@foreach($associado as $associado)
+			@foreach($associado as $a)
 				<tr>
-                    <td>{{ $associado->nome }}</td>
-                    <td>{{ $associado->email }}</td>
-                    <td>{{ $associado->cargo }}</td>
-                    <td>{{ Carbon\Carbon::parse($associado->dt_nascimento)->format('d/m/Y') }}</td>
-                    <td>{{ Carbon\Carbon::parse($associado->dt_admissao)->format('d/m/Y') }}</td>
+                    <td>{{ $a->nome }}</td>
+                    <td>{{ $a->email }}</td>
+                    <td>{{ $a->cargo->nome }}</td>
+                    <td>{{ $a->endereco->cidade }}</td>
+                    <td>{{ Carbon\Carbon::parse($a->dt_nascimento)->format('d/m/Y') }}</td>
+                    <td>{{ Carbon\Carbon::parse($a->dt_admissao)->format('d/m/Y') }}</td>
 					<td>
-						<a href="{{ route('associado.edit', ['id'=>\Crypt::encrypt($associado->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$associado->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('associado.edit', ['id'=>\Crypt::encrypt($a->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$a->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
-	</table>	
+	</table>
 
-	
+	{{ $associado->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('associado.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

@@ -26,22 +26,22 @@
 		</thead>
 
 		<tbody>
-			@foreach($reuniao as $reuniao)
+			@foreach($reuniao as $r)
 				<tr>
-                    <td>{{ $reuniao->nome }}</td>
-					<td>{{ $reuniao->assunto }}</td>
-                    <td>{{ $reuniao->local }}</td>
-                    <td>{{ Carbon\Carbon::parse($reuniao->dt_reuniao)->format('d/m/Y') }}</td> 
+                    <td>{{ $r->nome }}</td>
+					<td>{{ $r->assunto }}</td>
+                    <td>{{ $r->local }}</td>
+                    <td>{{ Carbon\Carbon::parse($r->dt_reuniao)->format('d/m/Y') }}</td> 
 					<td>
-						<a href="{{ route('reuniao.edit', ['id'=>\Crypt::encrypt($reuniao->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$reuniao->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('reuniao.edit', ['id'=>\Crypt::encrypt($r->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$r->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>	
 
-	
+	{{ $reuniao->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('reuniao.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

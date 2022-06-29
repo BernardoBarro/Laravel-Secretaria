@@ -11,16 +11,15 @@ class InstituicaoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$instituicaos = \DB::table('instituicao')
-	            ->select('instituicao.*', 'nome')
-	            ->paginate(10);
+    		$instituicoes = Instituicao::orderBy('nome')->paginate(5);
+            return view('instituicao.index', ['instituicao'=>$instituicoes]);
         }
         else
-            $instituicaos = Instituicao::where('nome', 'like', '%'.$filtragem.'%')
+            $instituicoes = Instituicao::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10)
-                            ->setpath('atores?desc_filtro='.$filtragem);
-		return view('instituicao.index', ['instituicao'=>$instituicaos]);
+        					->paginate(5)
+                            ->setpath('instituicao?desc_filtro='.$filtragem);
+		return view('instituicao.index', ['instituicao'=>$instituicoes]);
 	}
 
     public function create() {
@@ -34,8 +33,15 @@ class InstituicaoController extends Controller
     }
 
     public function destroy($id) {
-        Instituicao::find($id)->delete();
-        return redirect()->route('instituicao');
+        try{
+            Instituicao::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {

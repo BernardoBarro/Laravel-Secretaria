@@ -11,14 +11,13 @@ class AssociadoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$associados = \DB::table('associados')
-	            ->select('associados.*', 'nome')
-	            ->paginate(10);
+    		$associados = Associado::orderBy('nome')->paginate(5);
+            return view('associado.index', ['associado'=>$associados]);
         }
         else
             $associados = Associado::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10)
+        					->paginate(5)
                             ->setpath('associado?desc_filtro='.$filtragem);
 		return view('associado.index', ['associado'=>$associados]);
 	}
@@ -34,8 +33,15 @@ class AssociadoController extends Controller
     }
 
     public function destroy($id) {
-        Associado::find($id)->delete();
-        return redirect()->route('associado');
+        try{
+            Associado::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {

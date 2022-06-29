@@ -10,4 +10,8 @@ class Cargo extends Model
     use HasFactory;
     protected $table = "cargo";
     protected $fillable = ['nome', 'descricao'];
+
+    public function associado(){
+        return $this->hasOne("App\Models\Associado");
+    }
 }

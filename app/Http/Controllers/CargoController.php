@@ -11,14 +11,13 @@ class CargoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$cargos = \DB::table('cargo')
-	            ->select('cargo.*', 'nome')
-	            ->paginate(10);
+    		$cargos = Cargo::orderBy('nome')->paginate(5);
+            return view('cargo.index', ['cargo'=>$cargos]);
         }
         else
             $cargos = Cargo::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10)
+        					->paginate(5)
                             ->setpath('cargo?desc_filtro='.$filtragem);
 		return view('cargo.index', ['cargo'=>$cargos]);
 	}
@@ -34,8 +33,15 @@ class CargoController extends Controller
     }
 
     public function destroy($id) {
-        Cargo::find($id)->delete();
-        return redirect()->route('cargo');
+        try{
+            Cargo::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {

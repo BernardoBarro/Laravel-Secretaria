@@ -10,4 +10,8 @@ class Endereco extends Model
     use HasFactory;
     protected $table = "endereco";
     protected $fillable = ['cep', 'cidade', 'bairro', 'rua'];
+
+    public function associado(){
+        return $this->hasOne("App\Models\Associado");
+    }
 }

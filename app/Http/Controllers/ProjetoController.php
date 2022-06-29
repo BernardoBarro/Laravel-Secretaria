@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProjetoInstituicao;
+use App\Models\ProjetoPatrocinador;
 use App\Models\Projeto;
 use App\Http\Requests\ProjetoRequest;
 
@@ -11,15 +13,14 @@ class ProjetoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$projetos = \DB::table('projeto')
-	            ->select('projeto.*', 'nome')
-	            ->paginate(10);
+    		$projetos = Projeto::orderBy('nome')->paginate(5);
+            return view('projeto.index', ['projeto'=>$projetos]);
         }
         else
             $projetos = Projeto::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10)
-                            ->setpath('atores?desc_filtro='.$filtragem);
+        					->paginate(5)
+                            ->setpath('projeto?desc_filtro='.$filtragem);
 		return view('projeto.index', ['projeto'=>$projetos]);
 	}
 
@@ -27,15 +28,23 @@ class ProjetoController extends Controller
         return view('projeto.create');
     }
 
-    public function store(projetoRequest $request) {
-        $novo_projeto = $request->all();
-        Projeto::create($novo_projeto);
+    public function store(Request $request) {
+        $projeto = Projeto::create($request->all());
+        $projeto->instituicoes()->sync($request->get('instituicoes'));
+        $projeto->patrocinadores()->sync($request->get('patrocinadores'));
         return redirect()->route('projeto');
     }
-
+    
     public function destroy($id) {
-        Projeto::find($id)->delete();
-        return redirect()->route('projeto');
+        try{
+            Projeto::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {
@@ -44,7 +53,10 @@ class ProjetoController extends Controller
     }
 
     public function update(ProjetoRequest $request, $id) {
-        Projeto::find($id)->update($request->all());
+        $projeto = Projeto::find($id);
+        $projeto->update($request->all());
+        $projeto->instituicoes()->sync($request->get('instituicoes'));
+        $projeto->patrocinadores()->sync($request->get('patrocinadores'));
        return redirect()->route('projeto');
     }
 }

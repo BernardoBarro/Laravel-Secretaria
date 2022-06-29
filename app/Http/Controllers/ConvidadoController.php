@@ -11,14 +11,13 @@ class ConvidadoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$convidados = \DB::table('convidado')
-	            ->select('convidado.*', 'nome')
-	            ->paginate(10);
+    		$convidados = Convidado::orderBy('nome')->paginate(5);
+            return view('convidado.index', ['convidado'=>$convidados]);
         }
         else
             $convidados = Convidado::where('nome', 'like', '%'.$filtragem.'%')
         					->orderBy("nome")
-        					->paginate(10)
+        					->paginate(5)
                             ->setpath('convidado?desc_filtro='.$filtragem);
 		return view('convidado.index', ['convidado'=>$convidados]);
 	}
@@ -34,8 +33,15 @@ class ConvidadoController extends Controller
     }
 
     public function destroy($id) {
-        Convidado::find($id)->delete();
-        return redirect()->route('convidado');
+        try{
+            Convidado::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {

@@ -11,14 +11,13 @@ class EnderecoController extends Controller
     public function index(Request $filtro) {
 		$filtragem = $filtro->get('desc_filtro');
         if ($filtragem == null) {
-    		$enderecos = \DB::table('endereco')
-	            ->select('endereco.*', 'cidade')
-	            ->paginate(10);
+    		$enderecos = Endereco::orderBy('cidade')->paginate(5);
+            return view('endereco.index', ['endereco'=>$enderecos]);
         }
         else
             $enderecos = Endereco::where('cidade', 'like', '%'.$filtragem.'%')
         					->orderBy("cidade")
-        					->paginate(10)
+        					->paginate(5)
                             ->setpath('endereco?desc_filtro='.$filtragem);
 		return view('endereco.index', ['endereco'=>$enderecos]);
 	}
@@ -34,8 +33,15 @@ class EnderecoController extends Controller
     }
 
     public function destroy($id) {
-        Endereco::find($id)->delete();
-        return redirect()->route('endereco');
+        try{
+            Endereco::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit(Request $request) {

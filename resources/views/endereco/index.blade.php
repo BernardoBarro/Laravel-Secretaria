@@ -26,22 +26,22 @@
 		</thead>
 
 		<tbody>
-			@foreach($endereco as $endereco)
+			@foreach($endereco as $e)
 				<tr>
-                    <td>{{ $endereco->cep }}</td>
-                    <td>{{ $endereco->cidade }}</td>
-                    <td>{{ $endereco->bairro }}</td>
-                    <td>{{ $endereco->rua }}</td>
+                    <td>{{ $e->cep }}</td>
+                    <td>{{ $e->cidade }}</td>
+                    <td>{{ $e->bairro }}</td>
+                    <td>{{ $e->rua }}</td>
 					<td>
-						<a href="{{ route('endereco.edit', ['id'=>\Crypt::encrypt($endereco->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$endereco->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('endereco.edit', ['id'=>\Crypt::encrypt($e->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$e->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>	
 
-	
+	{{ $endereco->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('endereco.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

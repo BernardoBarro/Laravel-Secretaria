@@ -25,21 +25,21 @@
 		</thead>
 
 		<tbody>
-			@foreach($patrocinador as $patrocinador)
+			@foreach($patrocinador as $p)
 				<tr>
-                    <td>{{ $patrocinador->nome }}</td>
-                    <td>{{ $patrocinador->valor }}</td>
-					<td>{{ $patrocinador->descricao }}</td>
+                    <td>{{ $p->nome }}</td>
+                    <td>{{ $p->valor }}</td>
+					<td>{{ $p->descricao }}</td>
 					<td>
-						<a href="{{ route('patrocinador.edit', ['id'=>\Crypt::encrypt($patrocinador->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$patrocinador->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('patrocinador.edit', ['id'=>\Crypt::encrypt($p->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$p->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>	
 
-	
+	{{ $patrocinador->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('patrocinador.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

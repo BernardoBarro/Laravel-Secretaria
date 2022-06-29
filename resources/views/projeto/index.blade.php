@@ -20,24 +20,36 @@
 		<thead>
 			<th>Nome do Projeto:</th>
 			<th>Descrição:</th>
+			<th>Instituições:</th>
+			<th>Patrocinadores:</th>
             <th>Ações:</th>
 		</thead>
 
 		<tbody>
-			@foreach($projeto as $projeto)
+			@foreach($projeto as $p)
 				<tr>
-                    <td>{{ $projeto->nome }}</td>
-					<td>{{ $projeto->descricao }}</td>
+                    <td>{{ $p->nome }}</td>
+					<td>{{ $p->descricao }}</td>
 					<td>
-						<a href="{{ route('projeto.edit', ['id'=>\Crypt::encrypt($projeto->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$projeto->id}})"class="btn-sm btn-danger">Remover</a>
+						@foreach($p->instituicoes as $i)
+							<li>{{ $i->nome}}</li>
+						@endforeach
+					</td>
+					<td>
+						@foreach($p->patrocinadores as $pa)
+							<li>{{ $pa->nome}}</li>
+						@endforeach
+					</td>
+					<td>
+						<a href="{{ route('projeto.edit', ['id'=>\Crypt::encrypt($p->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$p->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
-	</table>	
+	</table>
 
-	
+	{{ $projeto->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('projeto.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

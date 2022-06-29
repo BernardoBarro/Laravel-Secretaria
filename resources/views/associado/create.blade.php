@@ -21,12 +21,16 @@
 
          <!-- //Cargo -->
          <div class="form-group">
-                {!! Form::label('cargo', 'Cargo:') !!}
-                {!! Form::select('cargo',
-                                  array('Presidente' => 'Presidente',
-                                        'Vice-Presidente'  => 'Vice-Presidente',
-                                        'Secretario' => 'Secretario'),
-                                        'Presidente', ['class'=>'form-control', 'required']) !!}
+                {!! Form::label('cargo_id', 'Cargo:') !!}
+                {!! Form::select('cargo_id', \App\Models\Cargo::orderBy('nome')->pluck('nome', 'id')->toArray(),
+                    null, ['class'=>'form-control', 'required']) !!}
+        </div>
+
+        <!-- //Endereço -->
+        <div class="form-group">
+            {!! Form::label('endereco_id', 'Endereço:') !!}
+            {!! Form::select('endereco_id', \App\Models\Endereco::orderBy('cidade')->pluck('cidade', 'id')->toArray(),
+                null, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <!-- //Email -->

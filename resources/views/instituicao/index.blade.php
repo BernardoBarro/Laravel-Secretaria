@@ -24,20 +24,20 @@
 		</thead>
 
 		<tbody>
-			@foreach($instituicao as $instituicao)
+			@foreach($instituicao as $i)
 				<tr>
-                    <td>{{ $instituicao->nome }}</td>
-					<td>{{ $instituicao->contato }}</td>
+                    <td>{{ $i->nome }}</td>
+					<td>{{ $i->contato }}</td>
 					<td>
-						<a href="{{ route('instituicao.edit', ['id'=>\Crypt::encrypt($instituicao->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$instituicao->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('instituicao.edit', ['id'=>\Crypt::encrypt($i->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$i->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>	
 
-	
+	{{ $instituicao->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('instituicao.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop

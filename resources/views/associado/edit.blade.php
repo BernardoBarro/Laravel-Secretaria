@@ -18,18 +18,21 @@
                 {!! Form::text('nome', $associado->nome, ['class'=>'form-control', 'required']) !!}
         </div>
 
-        <div class="form-group">
-                {!! Form::label('email', 'E-mail:') !!}
-                {!! Form::text('email', $associado->email, ['class'=>'form-control', 'required']) !!}
+         <div class="form-group">
+                {!! Form::label('cargo_id', 'Cargo:') !!}
+                {!! Form::select('cargo_id', \App\Models\Cargo::orderBy('nome')->pluck('nome', 'id')->toArray(),
+                    $associado->cargo_id, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <div class="form-group">
-                {!! Form::label('cargo', 'Cargo:') !!}
-                {!! Form::select('cargo',
-                                  array('Presidente' => 'Presidente',
-                                        'Vice-Presidente'  => 'Vice-Presidente',
-                                        'Secretario' => 'Secretario'),
-                                        'Presidente', ['class'=>'form-control', 'required']) !!}
+            {!! Form::label('endereco_id', 'Endereço:') !!}
+            {!! Form::select('endereco_id', \App\Models\Endereco::orderBy('cidade')->pluck('cidade', 'id')->toArray(),
+                $associado->endereco_id, ['class'=>'form-control', 'required']) !!}
+        </div>
+        
+        <div class="form-group">
+                {!! Form::label('email', 'E-mail:') !!}
+                {!! Form::text('email', $associado->email, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <div class="form-group">

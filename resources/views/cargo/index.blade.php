@@ -24,20 +24,20 @@
 		</thead>
 
 		<tbody>
-			@foreach($cargo as $cargo)
+			@foreach($cargo as $c)
 				<tr>
-                    <td>{{ $cargo->nome }}</td>
-                    <td>{{ $cargo->descricao }}</td>
+                    <td>{{ $c->nome }}</td>
+                    <td>{{ $c->descricao }}</td>
 					<td>
-						<a href="{{ route('cargo.edit', ['id'=>\Crypt::encrypt($cargo->id)]) }}" class="btn-sm btn-success">Editar</a>
-						<a href="#" onclick="return ConfirmaExclusao({{$cargo->id}})"class="btn-sm btn-danger">Remover</a>
+						<a href="{{ route('cargo.edit', ['id'=>\Crypt::encrypt($c->id)]) }}" class="btn-sm btn-success">Editar</a>
+						<a href="#" onclick="return ConfirmaExclusao({{$c->id}})"class="btn-sm btn-danger">Remover</a>
 					</td>
 				</tr>
 			@endforeach
 		</tbody>
-	</table>	
+	</table>
 
-	
+	{{ $cargo->links("pagination::bootstrap-4") }}
 
 	<a href="{{ route('cargo.create', []) }}" class="btn btn-info">Adicionar</a>
 @stop
