@@ -12,10 +12,10 @@ class Projeto extends Model
     protected $fillable = ['nome', 'descricao'];
 
     public function instituicoes() {
-        return $this->hasMany("App\Models\ProjetoInstituicao");
+        return $this->belongsToMany("App\Models\Instituicao", "projeto_instituicoes");
     }
-
+    
     public function patrocinadores() {
-        return $this->hasMany("App\Models\ProjetoPatrocinador");
+        return $this->belongsToMany("App\Models\Patrocinador", "projeto_patrocinadores");
     }
 }

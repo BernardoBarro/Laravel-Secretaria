@@ -8,10 +8,19 @@ use App\Http\Requests\ReuniaoRequest;
 
 class ReuniaoController extends Controller
 {
-    public function index(){
-        $reuniao = Reuniao::All();
-        return view('reuniao.index',['reuniaos' =>$reuniao]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$reunioes = Reuniao::orderBy('nome')->paginate(5);
+            return view('reuniao.index', ['reuniao'=>$reunioes]);
+        }
+        else
+            $reunioes = Reuniao::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+                            ->setpath('reuniao?desc_filtro='.$filtragem);
+		return view('reuniao.index', ['reuniao'=>$reunioes]);
+	}
 
     public function create() {
         return view('reuniao.create');
@@ -24,14 +33,21 @@ class ReuniaoController extends Controller
     }
 
     public function destroy($id) {
-        Reuniao::find($id)->delete();
-        return redirect()->route('reuniao');
+        try{
+            Reuniao::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id) {
-       $reuniao = Reuniao::find($id);
-       return view('reuniao.edit', compact('reuniao'));
-    }
+    public function edit(Request $request) {
+        $reuniao = Reuniao::find(\Crypt::decrypt($request->get('id')));
+        return view('reuniao.edit', compact('reuniao'));
+     }
 
     public function update(ReuniaoRequest $request, $id) {
        Reuniao::find($id)->update($request->all());

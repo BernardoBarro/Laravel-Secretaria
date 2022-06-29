@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Editando Associado: {{ $associado->nome }}</h3>
+    <h3>Edição do(a) Associado(a) : {{ $associado->nome }}</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">
@@ -29,10 +29,24 @@
             {!! Form::select('endereco_id', \App\Models\Endereco::orderBy('cidade')->pluck('cidade', 'id')->toArray(),
                 $associado->endereco_id, ['class'=>'form-control', 'required']) !!}
         </div>
+        
+        <div class="form-group">
+                {!! Form::label('email', 'E-mail:') !!}
+                {!! Form::text('email', $associado->email, ['class'=>'form-control', 'required']) !!}
+        </div>
+
+        <div class="form-group">
+                {!! Form::label('dt_nascimento', 'Data de nascimento:') !!}
+                {!! Form::date('dt_nascimento', $associado->dt_nascimento, ['class'=>'form-control', 'required']) !!}
+        </div>
+
+        <div class="form-group">
+                {!! Form::label('dt_admissao', 'Data de admissão:') !!}
+                {!! Form::date('dt_admissao', $associado->dt_admissao, ['class'=>'form-control', 'required']) !!}
+        </div>
 
         <div class="form-group">
             {!! Form::submit('Editar Associado', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
         </div>
     {!! Form::close() !!}
 @stop

@@ -10,49 +10,53 @@ use App\Http\Requests\ProjetoRequest;
 
 class ProjetoController extends Controller
 {
-    public function index(){
-        $projeto = Projeto::All();
-        return view('projeto.index',['projetos' =>$projeto]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$projetos = Projeto::orderBy('nome')->paginate(5);
+            return view('projeto.index', ['projeto'=>$projetos]);
+        }
+        else
+            $projetos = Projeto::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+                            ->setpath('projeto?desc_filtro='.$filtragem);
+		return view('projeto.index', ['projeto'=>$projetos]);
+	}
 
     public function create() {
         return view('projeto.create');
     }
 
     public function store(Request $request) {
-        $projeto = Projeto::create([
-            'nome' => $request->get('nome'),
-            'descricao' => $request->get('descricao')
-        ]);
-        $instituicoes = $request->instituicoes;
-        foreach($instituicoes as $i => $value) {
-            ProjetoInstituicao::create([
-                'projeto_id' => $projeto->id,
-                'instituicao_id' => $instituicoes[$i]
-            ]);
-        }
-        $patrocinadores = $request->patrocinadores;
-        foreach($patrocinadores as $p => $value) {
-            ProjetoPatrocinador::create([
-                'projeto_id' => $projeto->id,
-                'patrocinador_id' => $patrocinadores[$p]
-            ]);
-        }
+        $projeto = Projeto::create($request->all());
+        $projeto->instituicoes()->sync($request->get('instituicoes'));
+        $projeto->patrocinadores()->sync($request->get('patrocinadores'));
         return redirect()->route('projeto');
     }
     
     public function destroy($id) {
-        Projeto::find($id)->delete();
-        return redirect()->route('projeto');
+        try{
+            Projeto::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id) {
-       $projeto = Projeto::find($id);
+    public function edit(Request $request) {
+       $projeto = Projeto::find(\Crypt::decrypt($request->get('id')));
        return view('projeto.edit', compact('projeto'));
     }
 
     public function update(ProjetoRequest $request, $id) {
-        Projeto::find($id)->update($request->all());
+        $projeto = Projeto::find($id);
+        $projeto->update($request->all());
+        $projeto->instituicoes()->sync($request->get('instituicoes'));
+        $projeto->patrocinadores()->sync($request->get('patrocinadores'));
        return redirect()->route('projeto');
     }
 }

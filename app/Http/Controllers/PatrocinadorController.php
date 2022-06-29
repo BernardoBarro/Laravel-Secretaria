@@ -8,10 +8,19 @@ use App\Http\Requests\PatrocinadorRequest;
 
 class PatrocinadorController extends Controller
 {
-    public function index(){
-        $patrocinador = Patrocinador::All();
-        return view('patrocinador.index',['patrocinadores' =>$patrocinador]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$patrocinadores = Patrocinador::orderBy('nome')->paginate(5);
+            return view('patrocinador.index', ['patrocinador'=>$patrocinadores]);
+        }
+        else
+            $patrocinadores = Patrocinador::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+                            ->setpath('patrocinador?desc_filtro='.$filtragem);
+		return view('patrocinador.index', ['patrocinador'=>$patrocinadores]);
+	}
 
     public function create() {
         return view('patrocinador.create');
@@ -24,14 +33,21 @@ class PatrocinadorController extends Controller
     }
 
     public function destroy($id) {
-        Patrocinador::find($id)->delete();
-        return redirect()->route('patrocinador');
+        try{
+            Patrocinador::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id) {
-       $patrocinador = Patrocinador::find($id);
-       return view('patrocinador.edit', compact('patrocinador'));
-    }
+    public function edit(Request $request) {
+        $patrocinador = Patrocinador::find(\Crypt::decrypt($request->get('id')));
+        return view('patrocinador.edit', compact('patrocinador'));
+     }
 
     public function update(PatrocinadorRequest $request, $id) {
         Patrocinador::find($id)->update($request->all());

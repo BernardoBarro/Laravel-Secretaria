@@ -8,10 +8,19 @@ use App\Http\Requests\AssociadoRequest;
 
 class AssociadoController extends Controller
 {
-    public function index(){
-        $associados = Associado::All();
-        return view('associado.index',['associados' =>$associados]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$associados = Associado::orderBy('nome')->paginate(5);
+            return view('associado.index', ['associado'=>$associados]);
+        }
+        else
+            $associados = Associado::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+                            ->setpath('associado?desc_filtro='.$filtragem);
+		return view('associado.index', ['associado'=>$associados]);
+	}
 
     public function create() {
         return view('associado.create');
@@ -24,22 +33,20 @@ class AssociadoController extends Controller
     }
 
     public function destroy($id) {
-        // try{
-        //     Associado::find($id)->delete();
-        //     $ret = array('status'=>200, 'msg'=>'null');
-        // } catch (\Illuminate\Database\QueryException $e) {
-        //     $ret = array('status'=>500, 'msg'=>$e->getMessage());
-        // } catch (\PDOException $e) {
-        //     $ret = array('status'=>500, 'msg'=>$e->getMessage());
-        // }
-        // return $ret;
-        Associado::find($id)->delete();
-        return redirect()->route('associado');
+        try{
+            Associado::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id) {
-       $associado = Associado::find($id);
-       return view('associado.edit', compact('associado'));
+    public function edit(Request $request) {
+        $associado = Associado::find(\Crypt::decrypt($request->get('id')));
+        return view('associado.edit', compact('associado'));
     }
 
     public function update(AssociadoRequest $request, $id) {

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projeto_instituicoes', function (Blueprint $table) {
+       //Tabela dos Endereços
+        Schema::create('endereco', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('projeto_id')->unsigned()->nullable();
-            $table->foreign('projeto_id')->references('id')->on('projeto');
-            $table->bigInteger('instituicao_id')->unsigned()->nullable();
-            $table->foreign('instituicao_id')->references('id')->on('instituicao');
             $table->timestamps();
+            $table->string('cep',8); 
+            $table->string('cidade', 30);
+            $table->string('bairro', 50);
+            $table->string('rua', 50);
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projeto_instituicaos');
+        Schema::dropIfExists('endereco');
     }
 };

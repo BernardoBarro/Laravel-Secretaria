@@ -8,10 +8,19 @@ use App\Http\Requests\ConvidadoRequest;
 
 class ConvidadoController extends Controller
 {
-    public function index(){
-        $convidado = Convidado::All();
-        return view('convidado.index',['convidados' =>$convidado]);
-    }
+    public function index(Request $filtro) {
+		$filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+    		$convidados = Convidado::orderBy('nome')->paginate(5);
+            return view('convidado.index', ['convidado'=>$convidados]);
+        }
+        else
+            $convidados = Convidado::where('nome', 'like', '%'.$filtragem.'%')
+        					->orderBy("nome")
+        					->paginate(5)
+                            ->setpath('convidado?desc_filtro='.$filtragem);
+		return view('convidado.index', ['convidado'=>$convidados]);
+	}
 
     public function create() {
         return view('convidado.create');
@@ -24,13 +33,20 @@ class ConvidadoController extends Controller
     }
 
     public function destroy($id) {
-        Convidado::find($id)->delete();
-        return redirect()->route('convidado');
+        try{
+            Convidado::find($id)->delete();
+            $ret = array('status'=>200, 'msg'=>'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status'=>500, 'msg'=>$e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id) {
-       $convidado = Convidado::find($id);
-       return view('convidado.edit', compact('convidado'));
+    public function edit(Request $request) {
+        $convidado = Convidado::find(\Crypt::decrypt($request->get('id')));
+        return view('convidado.edit', compact('convidado'));
     }
 
     public function update(ConvidadoRequest $request, $id) {

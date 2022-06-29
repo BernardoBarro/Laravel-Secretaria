@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Novo Cargo</h3>
+    <h3>Editando o Cargo de {{ $cargo->nome }}</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">
@@ -11,24 +11,20 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>'cargo/store']) !!}
+    {!! Form::open(['route'=>['cargo.update', 'id'=>$cargo->id], 'method'=>'put']) !!}
 
-        <!-- //Cargo -->
-        <div class="form-group">
+    <div class="form-group">
                 {!! Form::label('nome', 'Cargo:') !!}
-                {!! Form::text('nome', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::text('nome', $cargo->nome, ['class'=>'form-control', 'required']) !!}
         </div>
 
-        <!-- //Descrição -->
         <div class="form-group">
                 {!! Form::label('descricao', 'Descrição:') !!}
-                {!! Form::text('descricao', null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::text('descricao', $cargo->descricao, ['class'=>'form-control', 'required']) !!}
         </div>
-        
+
         <div class="form-group">
-            {!! Form::submit('Criar Cargo', ['class'=>'btn btn-primary']) !!}
-            {!! Form::reset('Limpar', ['class'=>'btn btn-default']) !!}
+            {!! Form::submit('Editar Cargo', ['class'=>'btn btn-primary']) !!}
         </div>
-        
     {!! Form::close() !!}
 @stop

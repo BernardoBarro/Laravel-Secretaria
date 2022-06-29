@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <h3>Nova Instituicao</h3>
+    <h3>Nova Instituição:</h3>
 
     @if($errors->any())
         <ul class="alert alert-danger">

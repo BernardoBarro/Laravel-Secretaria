@@ -41,13 +41,13 @@
 
         <!-- //Dt-nascimento -->
         <div class="form-group">
-                {!! Form::label('dt_nascimento', 'Dt_nascimento:') !!}
+                {!! Form::label('dt_nascimento', 'Data de nascimento:') !!}
                 {!! Form::date('dt_nascimento', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
         <!-- //Dt-admissão -->
         <div class="form-group">
-                {!! Form::label('dt_admissao', 'Dt_admissao:') !!}
+                {!! Form::label('dt_admissao', 'Data de admissao:') !!}
                 {!! Form::date('dt_admissao', null, ['class'=>'form-control', 'required']) !!}
         </div>
 
