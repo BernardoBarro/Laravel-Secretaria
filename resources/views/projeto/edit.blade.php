@@ -25,6 +25,9 @@
         <hr />
 
         <h4>Instituições</h4>
+			@foreach($projeto->instituicoes as $i)
+                <div><div style="width:94%; float:left" id:"instituicao">{!! Form::select("instituicoes[]", \App\Models\Instituicao::orderby("nome")->pluck("nome","id")->toArray(), $i->id, ["class"=>"form-control", "required"]) !!}</div><button type="button" class"remove_field btn btn-danger btn-circle"><i class="fa fa-times"></i></button></div>
+            @endforeach
         <div class="input_fields_wrap_i"></div>
         <br>
 
@@ -35,11 +38,13 @@
         <hr />
 
         <h4>Patrocinadores</h4>
+			@foreach($projeto->patrocinadores as $pa)
+                <div><div style="width:94%; float:left" id:"patroinador">{!! Form::select("patrocinadores[]", \App\Models\Patrocinador::orderby("nome")->pluck("nome","id")->toArray(), $pa->id, ["class"=>"form-control", "required"]) !!}</div><button type="button" class"remove_field btn btn-danger btn-circle"><i class="fa fa-times"></i></button></div>
+            @endforeach
         <div class="input_fields_wrap_p"></div>
         <br>
 
         <button style="float:right" class="add_field_button_p btn btn-default">Adicionar Patrocinador</button>
-
         <br>
         <hr />
 
