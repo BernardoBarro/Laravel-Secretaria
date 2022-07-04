@@ -25,6 +25,9 @@ class ReuniaoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'assunto' => 'required',
+            'dt_reuniao' => 'required', 
+            'local' => 'required',
         ];
     }
 }

@@ -24,6 +24,8 @@ class CargoRequest extends FormRequest
     public function rules()
     {
         return [
+            'nome' => 'required|min:5',
+            'descricao' => 'required'
         ];
     }
 }
