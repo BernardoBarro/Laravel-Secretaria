@@ -25,6 +25,7 @@ class ProjetoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'descricao' => 'required'
         ];
     }
 }

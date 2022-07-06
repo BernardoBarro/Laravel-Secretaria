@@ -25,6 +25,7 @@ class ConvidadoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'telefone' => 'required|min:8|max:11'
         ];
     }
 }

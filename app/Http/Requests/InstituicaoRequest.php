@@ -25,6 +25,7 @@ class InstituicaoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'contato' => 'required'
         ];
     }
 }

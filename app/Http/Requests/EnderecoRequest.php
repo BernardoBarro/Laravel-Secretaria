@@ -25,6 +25,9 @@ class EnderecoRequest extends FormRequest
     {
         return [
             'cep' => 'digits:8',
+            'cidade' => 'required',
+            'bairro' => 'required',
+            'rua' => 'required',
         ];
     }
 }

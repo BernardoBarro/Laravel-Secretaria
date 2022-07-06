@@ -25,6 +25,9 @@ class AssociadoRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'cargo_id' => 'required',
+            'endereco_id' => 'required',
+            'dt_nascimento' => 'required'
         ];
     }
 }

@@ -25,6 +25,8 @@ class PatrocinadorRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
+            'valor' => 'digits:1',
+            'descricao' => 'required|min:5',
         ];
     }
 }
